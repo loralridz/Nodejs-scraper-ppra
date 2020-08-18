@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Tenders</title>
+    <style>
+        .table{
+            padding: 3rem;
+        }
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        th, td {
+          text-align: left;
+          padding: 8px;
+        }
+        h2{
+            text-align: center;
+            align-content: center;
+        }
+        tr:nth-child(even) {background-color:blanchedalmond;}
+        tr:nth-child(even) {background-color:cornsilk;}
+        .head{
+            font-weight: bold;
+            
+            background-color:rgb(90, 128, 128);
+        }
+    </style>
+    
+</head>
+<body>
+    <br>
+    <h2>Latest Tenders</h2>
+
+    <button id="create">Click to refresh</button>
+
+    <div class="table">
+        <table id="t" class="table-auto">
+            <thead class="head">
+              <tr>
+                <th class="px-4 py-2">No</th>
+                <th class="px-4 py-2">Details</th>
+                <th class="px-4 py-2s">Advertise</th>
+                <th class="px-4 py-2s">Closing</th>
+                <th class="px-4 py-2s">Document</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+    </div>
+    
+    <script>    
+        readtenders();
+    async function readtenders() {
+        try{
+            const result = await fetch("http://localhost:5000/tenders", {method:"GET"})
+            const todos = await result.json();
+            //loop through rows  
+            var i=1;
+            todos.forEach(t=>{
+
+                //table from html
+                var table = document.getElementById("t");
+
+                //create a new row
+                var row = table.insertRow(i);
+
+                //new cells
+                var no = row.insertCell(0);
+                var details = row.insertCell(1);
+                var adddate = row.insertCell(2);
+                var closedate = row.insertCell(3);
+                var doc = row.insertCell(4);
+
+                //passing the data
+                no.innerHTML = t.no;
+                details.innerHTML=t.details;
+                adddate.innerHTML = t.advertise_date;
+                closedate.innerHTML=t.closing_date;
+                doc.innerHTML = t.document;
+
+                //console.log(t.no + "," + t.details + ',' + t.advertise_date + ',' + t.closing_date + "," + t.document);
+                i++;
+            })
+        }
+        catch (e) {
+            console.log("Error reading the tenders.")
+        }
+
+    }
+    </script>
+    <script type="module" src="scrap.js"></script>
+</body>
+</html>
