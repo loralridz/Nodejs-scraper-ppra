@@ -4,51 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Latest Tenders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <style>
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
         .table{
-            padding: 3rem;
+            padding: 1rem;
         }
         table {
           border-collapse: collapse;
           width: 100%;
         }
-        
+        .tender-table{
+            margin:25px 0;
+            font-size:0.9em;
+            min-width:400px;
+            padding: 1rem;
+            border-radius:5px 5px 0 0;
+            overflow:hidden;
+            box-shadow: 0 0 20px #326690 ;
+        }
+    
         th, td {
           text-align: left;
-          padding: 8px;
+          padding: 6px;
         }
-        h2{
+        h1{
+            color: #326690;
+            font-size: 1.5em;
             text-align: center;
-            align-content: center;
-        }
-        tr:nth-child(even) {background-color:blanchedalmond;}
-        tr:nth-child(even) {background-color:cornsilk;}
-        .head{
             font-weight: bold;
-            
-            background-color:rgb(90, 128, 128);
+            margin-top: 1px;
+            margin-bottom: 1px;
+            text-shadow: 0 0 20px lightgray;
         }
+        .tender-table thead tr{
+            border-bottom: 1px solid darkgray;
+        }
+        .tender-table thead tr:nth-of-type(even){
+            background-color: #f3f3f3;
+        }
+        .tender-table thead tr:last-of-type{
+            border-bottom: 2px solid #326690;
+        }
+        .tender-table thead tr.active-row{
+            background-color: #326690;
+            font-weight: bold;
+        }
+        .head{
+            background-color: #326690;
+            color:white;
+            font-weight: bold;
+            font-size: 1.1em ;
+            border-bottom: 1px solid lightgrey;
+            
+        }
+        .btn{
+            margin-left: 55rem;
+            display: inline;
+            padding: 0.3em 1.2em;
+            border-radius: 2em;
+            text-decoration:none;
+            font-weight: 300;
+            color: white;
+            background-color: #326690;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .btn:hover{
+            background-color: #629bca;
+        }
+        
     </style>
     
 </head>
 <body>
     <br>
-    <h2>Latest Tenders</h2>
+    <h1>Latest Tenders</h1>
 
-    <button id="create">Click to refresh</button>
+    <a href="" onclick="scraptenders()" class="btn" id="create">Reload</a>
 
     <div class="table">
-        <table id="t" class="table-auto">
-            <thead class="head">
-              <tr>
-                <th class="px-4 py-2">No</th>
-                <th class="px-4 py-2">Details</th>
-                <th class="px-4 py-2s">Advertise</th>
-                <th class="px-4 py-2s">Closing</th>
-                <th class="px-4 py-2s">Document</th>
+        <table id="t" class="tender-table">
+            <thead>
+              <tr  class="head">
+                <th>No</th>
+                <th>Details</th>
+                <th>Advertise</th>
+                <th>Closing</th>
+                <th>Document</th>
               </tr>
             </thead>
-            <tbody>
+
+            <tbody >
             </tbody>
           </table>
     </div>
@@ -93,6 +142,20 @@
 
     }
     </script>
-    <script type="module" src="scrap.js"></script>
+
+    <script>
+
+     
+    async function scraptenders() {
+        try{
+            await fetch("http://localhost:5000/scraptenders", {method:"GET"})
+            
+
+        }
+        catch (e) {
+            console.log("Error scraping the tenders.")
+        }
+    }
+    </script>
 </body>
 </html>
