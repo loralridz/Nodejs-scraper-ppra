@@ -1,25 +1,26 @@
 {
-  "name": "nodejs-scraper-ppra",
-  "version": "1.0.0",
-  "description": "This app starts with rendering html template which reads data from database and stores scraped data in database.",
-  "main": "index.js",
-  "dependencies": {
-    "express": "^4.17.1",
-    "pg": "^8.3.3",
-    "puppeteer": "^5.2.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/loralridz/Nodejs-scraper-ppra.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/loralridz/Nodejs-scraper-ppra/issues"
-  },
-  "homepage": "https://github.com/loralridz/Nodejs-scraper-ppra#readme"
+    "name": "nodejs-scraper-ppra",
+    "version": "1.0.0",
+    "description": "This app starts with rendering html template which reads data from database and stores scraped data in database.",
+    "main": "index.js",
+    "dependencies": {
+        "express": "^4.17.1",
+        "pg": "^8.3.3",
+        "puppeteer": "^5.2.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "node index",
+        "dev": "nodemon index"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/loralridz/Nodejs-scraper-ppra.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/loralridz/Nodejs-scraper-ppra/issues"
+    },
+    "homepage": "https://github.com/loralridz/Nodejs-scraper-ppra#readme"
 }
