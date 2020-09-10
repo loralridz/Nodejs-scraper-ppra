@@ -22,22 +22,30 @@ async function scrap() {
             const tb = document.querySelector(
                 "body > div:nth-child(14) > table > tbody > tr:nth-child(4) > td > form > div > table > tbody"
             );
+
             //array declared
             let data = [];
             if (tb)
 
                 for (let ii = 2; ii < tb.childElementCount; ii++) {
+
                 // Gets whole row
                 const tr = tb.children[ii];
+
+
                 //Object declared
                 let rowData = {};
                 for (let jj = 0; jj < tr.childElementCount; jj++) {
+
                     //Get one cell
                     const td = tr.children[jj];
                     if (jj == 0) {
                         rowData.No = td.innerText;
                     } else if (jj == 1) {
                         rowData.Detail = td.innerText;
+                        const cell = td;
+                        const city = cell.firstElementChild.firstElementChild.innerText;
+                        rowData.city = city;
                     } else if (jj == 2) {
                         const cell = td;
                         // Cell gets P then gets a then href in a
@@ -47,6 +55,8 @@ async function scrap() {
                     } else if (jj == 4) {
                         rowData.Close_date = td.innerText;
                     }
+
+
                 }
                 // Pushing object in array
                 data.push(rowData);
@@ -71,8 +81,9 @@ async function scrap() {
     };
 
     const browser = await puppeteer.launch();
+    s
     const firstUrl =
-        "https://www.ppra.org.pk/dad_tenders.asp?PageNo=1";
+        "https://www.ppra.org.pk/dad_tenders.asp?PageNo=71";
     //update result in scraped_data
     const scraped_data = await result(firstUrl);
     await browser.close();
