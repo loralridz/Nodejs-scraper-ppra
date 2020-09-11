@@ -1,160 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latest Tenders</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .table {
-            padding: 1rem;
-        }
-        
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        
-        .tender-table {
-            margin: 25px 0;
-            font-size: 0.9em;
-            min-width: 400px;
-            padding: 1rem;
-            border-radius: 5px 5px 0 0;
-            overflow: hidden;
-            box-shadow: 0 0 20px #326690;
-        }
-        
-        th,
-        td {
-            text-align: left;
-            padding: 6px;
-        }
-        
-        h1 {
-            color: #326690;
-            font-size: 1.5em;
-            text-align: center;
-            font-weight: bold;
-            margin-top: 1px;
-            margin-bottom: 1px;
-            text-shadow: 0 0 20px lightgray;
-        }
-        
-        .tender-table thead tr {
-            border-bottom: 1px solid darkgray;
-        }
-        
-        .tender-table thead tr:nth-of-type(even) {
-            background-color: #f3f3f3;
-        }
-        
-        .tender-table thead tr:last-of-type {
-            border-bottom: 2px solid #326690;
-        }
-        
-        .tender-table thead tr.active-row {
-            background-color: #326690;
-            font-weight: bold;
-        }
-        
-        .head {
-            background-color: #326690;
-            color: white;
-            font-weight: bold;
-            font-size: 1.1em;
-            border-bottom: 1px solid lightgrey;
-        }
-        
-        .btn {
-            margin-left: 55rem;
-            display: inline;
-            padding: 0.3em 1.2em;
-            border-radius: 2em;
-            text-decoration: none;
-            font-weight: 300;
-            color: white;
-            background-color: #326690;
-            text-align: center;
-            transition: all 0.2s;
-        }
-        
-        .btn:hover {
-            background-color: #629bca;
-        }
-        
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #0f3d63;
-        }
-        
-        li {
-            float: left;
-        }
-        
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 16px;
-            text-decoration: none;
-        }
-        
-        li a:hover {
-            background-color: #01233f;
-        }
-        
-        .pagination {
-            display: inline-block;
-        }
-        
-        .pagination a {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
-        }
-        
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
-            z-index: 1;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <ul>
-        <li><a href="#" onclick="readtenders()">All</a></li>
-        <li><a href="#" onclick="scraptenders()">New</a></li>
-        <li><a href="#" onclick="activetenders()">Active</a></li>
-        <li><a href="#" onclick="expiredtenders()">Expired</a></li>
-        <li><a href="#" onclick="appliedtenders()">Applied</a></li>
-        <li><a href="#" onclick="rejectedtenders()">Rejected</a></li>
-    </ul>
+<!-- Adding header snippet -->
+<%- include('./layout/header.ejs') %>
+<%- include('./layout/navbar.ejs') %>
+   <br>
+   <br>
     <div id="tt" class="table">
         <table id="t" class="tender-table">
             <thead>
@@ -172,17 +21,45 @@
             <tbody>
             </tbody>
         </table>
+
+    </div>
+    <div id="table"></div>
+    <!--div align="center">
+        <ul class="pagination">
+            <li>
+                <a href="#">
+                    <</a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li class="disabled"><a href="#">10</a></li>
+            <li><a href="#">></a></li>
+        </ul>
+    </div -->
+    <div align="center">
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="/tenders?page=1">1</a>
+            <a href="/tenders?page=2">2</a>
+            <a href="/tenders?page=3">3</a>
+            <a href="/tenders?page=4">4</a>
+            <a href="/tenders?page=5">5</a>
+            <a href="/tenders?page=6">6</a>
+            <a href="#">&raquo;</a>
+        </div>
     </div>
 
 
-
     <script type="text/javascript">
+    readtenders();
         async function readtenders() {
+
             if (document.getElementById("t").rows.length > 1) {
                 console.log("Data is shown ")
             } else {
+                //console.log(document.getElementById("t").rows.length);
+                //document.getElementById("t").innerHTML = "";
                 try {
-                    const result = await fetch("http://localhost:5000/tenders", {
+                    const result = await fetch("http://localhost:5000/alltenders", {
                         method: "GET"
                     })
                     const todos = await result.json();
@@ -221,6 +98,16 @@
                         form.appendChild(button);
                         acell.appendChild(form);
 
+                        // document.getElementsByTagName("body")[0].appendChild(form);
+
+
+                        //insert form field
+                        // var p = document.getElementById("p");
+
+                        //var button = row.insertCell(5);
+
+
+                        //insert
                         //passing the data
                         no.innerHTML = t.no;
                         detail.innerHTML = t.detail;
@@ -234,6 +121,7 @@
                         closedate.innerHTML = ccd;
                         doc.innerHTML = t.document;
 
+                        //console.log(t.no + "," + t.details + ',' + t.advertise_date + ',' + t.closing_date + "," + t.document);
                         i++;
                     })
                 } catch (e) {
@@ -307,6 +195,7 @@
                     closedate.innerHTML = ccd;
                     doc.innerHTML = t.document;
 
+                    //console.log(t.no + "," + t.details + ',' + t.advertise_date + ',' + t.closing_date + "," + t.document);
                     i++;
                 })
             } catch (e) {
@@ -374,6 +263,7 @@
                     closedate.innerHTML = ccd;
                     doc.innerHTML = t.document;
 
+                    //console.log(t.no + "," + t.details + ',' + t.advertise_date + ',' + t.closing_date + "," + t.document);
                     i++;
                 })
             } catch (e) {
@@ -391,3 +281,7 @@
 </body>
 
 </html>
+
+
+<!-- Adding footer snippet -->
+<%- include('./layout/footer.ejs') %>

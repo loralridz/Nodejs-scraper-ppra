@@ -1,0 +1,24 @@
+<!-- Adding header snippet -->
+<%- include('./layout/header.ejs') %>
+    <%- include('./layout/navbar.ejs') %>
+
+        <!-- Search form -->
+        <br>
+        <br>
+        <br>
+        <div style="float:right;">
+
+            <!-- The form -->
+            <form class="example" method="POST" action="/searchtenders">
+                <input type="text" placeholder="Search City.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+        </div>
+        <br>
+        </body>
+
+        </html>
+
+        <!-- Adding footer snippet -->
+        <%- include('./layout/footer.ejs') %>
