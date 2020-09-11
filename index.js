@@ -12,13 +12,12 @@ const scrap = require('./scrap');
 app.set('view engine', 'ejs');
 
 //connecting to server
-app.listen(5000, () => {
+app.listen(8000, () => {
     console.log("server working...")
 })
 
 //body parser
 var bodyParser = require('body-parser');
-var parser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
@@ -26,12 +25,6 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 //static files route
 app.use(express.static(__dirname + '/public'));
-
-
-//render ejs template
-app.get("/t", function(req, res) {
-    res.render("index.ejs", {});
-});
 
 // home dashboard route
 app.get("/", async(req, res) => {
@@ -51,16 +44,7 @@ app.get("/tenders", async(req, res) => { // user route
     });
 });
 
-//all tenders route
-app.get("/alltenderss", async(req, res) => {
-    const rows = await readtenders(100, 0);
-    //notify browser and send all objects
-    res.render("file.ejs", {
-        result: rows
-    });
-})
-
-// Active tenders route
+// All tenders route
 app.get("/alltenders", async(req, res) => {
     const rows = await readtenders(100, 0);
     //notify browser and send all objects
