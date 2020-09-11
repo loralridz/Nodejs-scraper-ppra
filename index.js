@@ -7,6 +7,7 @@ const pool = require('./db');
 
 //import scrapper
 const scrap = require('./scrap');
+const e = require('express');
 
 //body parser
 app.use(express.json());
@@ -26,14 +27,38 @@ app.get("/tenders", async(req, res) => {
 app.get("/scraptenders", async(req, res) => {
 
     // await for scrapper to return scraped array 
-    const result = await scrap.scrap();
+    const ppra_tenders = await scrap.scrap();
+
+
+    const db_tenders = await readtenders();
+
+    
+
+
+
+
+
 
     // loop through array objects
-    result.forEach(async(tender) => {
+    ppra_tenders.forEach(async(tender) => {
         //create row in db 
-        await createtender(tender.No, tender.Details, tender.Advertise_date, tender.Close_date, tender.Document);
+        
+       if(db_tenders.filter(e => e.no == tender.No).length > 0)
+       {
+            //do nothing
+            console.log('duplicate found and it was discarded...');           
+
+        }
+        else {
+            //console.log('tender created!!!!');
+            await createtender(tender.No, tender.Details, tender.Advertise_date, tender.Close_date, tender.Document);
+        }
+
+
+
 
     });
+
     //Success response
     res.send("Successfully written scraped data.");
 
@@ -75,6 +100,7 @@ async function createtender(no, detail, ad, cd, doc) {
 
     await pool.query('INSERT INTO tender(no, detail, advertise_date, closing_date, document) VALUES ($1,$2,$3,$4,$5)', [no, detail, ad, cd, doc],
         function(err, result) {
+            console.log('New Tender added to DB...');
             if (err) {
                 console.log("Error Saving : %s ", err);
             }
