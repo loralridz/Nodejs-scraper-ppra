@@ -3,34 +3,20 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-
-<nav class=" blue darken-3" style="padding:0px 10px; position: fixed;">
-    <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Dashboard</a>
-
-        <a href="#" class="sidenav-trigger" data-target="mobile-nav">
-            <i class="material-icons">menu</i>
-        </a>
-
-        <ul class="right hide-on-med-and-down ">
-            <li><a href="/alltenders">All tenders</a></li>
-            <li><a href="/activetenders">Active tenders</a></li>
-            <li><a href="/expiredtenders">Expired tenders</a></li>
-            <li><a href="/appliedtenders">Applied tenders</a></li>
-        </ul>
+<div class="header">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <img src="/imgs/CloudTek_logo.png" alt="CloudTek" srcset="" class="navbar-brand"
+            style="width: 125px; height: auto; padding: 2%" />
     </div>
-</nav>
-
-
-<ul class="sidenav" id="mobile-nav">
-    <li><a href="/alltenders">All tenders</a></li>
-    <li><a href="/activetenders">Active tenders</a></li>
-    <li><a href="/expiredtenders">Expired tenders</a></li>
-    <li><a href="/appliedtenders">Applied tenders</a></li>
-</ul>
-
-<script>
-    $(document).ready(function() {
-        $('.sidenav').sidenav();
-    });
-</script>
+         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <ul id="nav-tabs" class="nav nav-tabs navbar-right navbar-nav" action=""
+                    style="margin-right: 2%; margin-top: 2%">
+            <div class="header-right " id="nav-tabs" >
+                <a href="/alltenders" style="text-decoration: none; transition: 0.5s;"> All</a>
+                <a href="/activetenders" style="text-decoration: none; transition: 0.5s;"> Active</a>
+                <a href="/expiredtenders" style="text-decoration: none; transition: 0.5s;"> Expired</a>
+                <a href="/appliedtenders" style="text-decoration: none; transition: 0.5s;"> Applied</a>
+                <a href="#Rejectd" style="text-decoration: none; transition: 0.5s;"> Rejected</a>
+            </div>
+        </div>
+    </div>

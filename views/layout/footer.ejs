@@ -1,11 +1,14 @@
 </div>
 
+
 <script type="text/javascript" src="/js/materialize.js"></script>
 <!-- Jquery for navbar-->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- to the top button script file -->
+<script src="/js/file.js"></script>
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<div align="center">
+<!-- <div align="center">
     <div class="pagination">
         <a href="#">&laquo;</a>
         <a href="/tenders?page=1">1</a>
@@ -20,11 +23,84 @@
         <a href="/tenders?page=10">10</a>
         <a href="#">&raquo;</a>
     </div>
-</div>
+</div> -->
+<footer >
+        
+            
+    <div class=" container-fluid" style="background-color: #0075bc; margin-top: 40px; color: blanchedalmond; font-weight: 600">
+        <hr/>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <img src="/imgs/footer-logo.png" alt="CloudTek" srcset="" class="navbar-brand"
+                style="width: 125px; height: auto; padding: 2%; margin: 5%;" />
+        </div>
 
-<br>
-<br>
-<br>
+        <div class="col-sm-3 col-xs-3">
+            <h5 style="color: white; font-size: 18px;"><strong> ABOUT </strong></h5>
+            <ul class="bottomlinks" style="list-style: none">
+                <li id="footerbtn">About Us</li>
+                <li id="footerbtn">Blog</li>
+                <li id="footerbtn">FAQ</li>
+                <li id="footerbtn">Login</li>
+                <li id="footerbtn">Register</li>
+            </ul>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+            <h5 style="color: white; font-size: 18px;">
+                <strong> USEFUL LINKS </strong>
+            </h5>
+           
+            <ul class="bottomlinks" style="list-style: none; color: blanchedalmond;">
+                <li><a id="footerbtn" href="/alltenders" >All Tenders</a> </li>
+                <li><a id="footerbtn" href="/activetenders" >Active Tenders</a> </li>
+                <li><a id="footerbtn" href="/appliedtenders" >Applied</a> </li>
+                <li><a id="footerbtn" href="/expiredtenders" >Expired</a> </li>
+            
+                
+            </ul>
+        </div>
+
+        <div class="col-sm-3 col-xs-3">
+            <div class="contact">
+                <h5 style="color: white; font-size: 18px;">
+                    <strong>CONTACT US </strong>
+                </h5>
+                <a href="" id="footerbtn" > <i class="material-icons"  style="font-size: 20px;">mobile_screen_share</i> +923449999999</a>
+                 <br />
+            </div>
+            
+                <i class="contact material-icons" style="font-size: 20px; margin: 3% 3% 3% 0%">mail</i>help@cloudtek.biz
+            
+            <div>
+                <h5 style="color: white; font-size: 18px;">
+                    <strong>FOLLOW US</strong>
+                </h5>
+                <div>
+                    <a href="https://www.facebook.com/"><span class="material-icons" id="footerbtn">facebook</span></a>
+                    <a href="#"><span class="material-icons" id="footerbtn">public</span> </a>
+                    <a href="#"><span class="material-icons" id="footerbtn">language</span></a>
+                    <a href="#"><span class="material-icons" id="footerbtn">share</span></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+            <h5 style=" color: white; font-size: 13px;">
+                <i class="magic-btn">Terms and Conditions</i> |
+                <i class="magic-btn">Privacy</i>
+                <i style="float: right; margin-right: 140px">
+                <i class="material-icons" style="font-size: 15px">copyright</i>2020 PPRA</i>
+            </h5>
+        </div>
+    </div>
+
+
+</footer>
+<!--TO THE TOP-->
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+    <i class="material-icons">keyboard_arrow_up</i>
+</button>
+
 </body>
 
 </html>

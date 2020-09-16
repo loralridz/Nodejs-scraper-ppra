@@ -22,27 +22,27 @@
 
                     <%result.forEach(t=>{%>
                         <tr>
-                            <th>
+                            <td>
                                 <%=t.no%>
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 <%=t.detail%>
-                            </th>
-                                <th>
+                            </td>
+                                <td>
                                     <%=t.advertise_date%>
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     <%=t.closing_date%>
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     <%=t.document%>
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     <form action="/apply" method="POST">
                                         <button type="submit" name="namet" value="<%= t.no %>">Apply</button>
 
                                     </form>
-                                </th>
+                                </td>
                         </tr>
                         <%});%>
                 </tbody>
