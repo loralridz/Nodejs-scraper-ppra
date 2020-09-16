@@ -63,45 +63,28 @@ app.get("/scraptenders", async(req, res) => {
 
 
     const db_tenders = await readtenders();
-
-    
-
-
-
-
-
-
     // loop through array objects
-
     result.forEach(async(tender) => {
-        const status = getStatus(tender.Advertise_date, tender.Close_date);
-        const city = citySelector(tender.city);
         //create row in db 
-        await createtender(tender.No, tender.Detail, get_date(tender.Advertise_date), get_date(tender.Close_date), tender.Document, status, city);
 
-    ppra_tenders.forEach(async(tender) => {
-        //create row in db 
-        
-       if(db_tenders.filter(e => e.no == tender.No).length > 0)
-       {
-            //do nothing
-            console.log('duplicate found and it was discarded...');           
+        if (db_tenders.filter(e => e.no == tender.No).length > 0) {
+            console.log('duplicate found and it was discarded...');
 
-        }
-        else {
-            //console.log('tender created!!!!');
-            await createtender(tender.No, tender.Details, tender.Advertise_date, tender.Close_date, tender.Document);
+        } else {
+            const status = getStatus(tender.Advertise_date, tender.Close_date);
+            const city = citySelector(tender.city);
+            await createtender(tender.No, tender.Detail, get_date(tender.Advertise_date), get_date(tender.Close_date), tender.Document, status, city);
         }
 
 
 
 
     });
-
     //Success response
     res.send("Successfully written scraped data.");
 
-})
+});
+
 
 // Active tenders route
 app.get("/activetenders", async(req, res) => {
