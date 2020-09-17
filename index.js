@@ -58,8 +58,8 @@ app.get("/alltenders", async(req, res) => {
 //get scrapped data
 app.get("/scraptenders", async(req, res) => {
 
-            // await for scrapper to return scraped array 
-            const ppra_tenders = await scrap.scrap();
+    // await for scrapper to return scraped array 
+    const ppra_tenders = await scrap.scrap();
 
 
     const db_tenders = await readtenders();
@@ -76,287 +76,278 @@ app.get("/scraptenders", async(req, res) => {
             await createtender(tender.No, tender.Detail, get_date(tender.Advertise_date), get_date(tender.Close_date), tender.Document, status, city);
         }
 
-                    if (db_tenders.filter(e => e.no == tender.No).length > 0) {
-                        //do nothing
-                        console.log('duplicate found and it was discarded...');
-
-                    } else {
-                        //console.log('tender created!!!!');
-                        await createtender(tender.No, tender.Details, tender.Advertise_date, tender.Close_date, tender.Document);
-                    }
 
 
 
+    });
+    //Success response
+    res.send("Successfully written scraped data.");
 
-                });
-
-                //Success response
-                res.send("Successfully written scraped data.");
-
-            })
-
-            // Active tenders route
-            app.get("/activetenders", async(req, res) => {
-                const rows = await activetenders();
-                //notify browser and send all objects
-                // res.setHeader("content-type", "application/json");
-                res.render("pagination.ejs", {
-                    result: rows
-                });
-            })
-
-            // Expired tenders route
-            app.get("/expiredtenders", async(req, res) => {
-                const rows = await expiredtenders();
-
-                //notify browser and send all objects
-                res.render("file.ejs", {
-                    result: rows
-                });
-            });
-
-            // Expired tenders route
-            app.get("/appliedtenders", async(req, res) => {
-                const rows = await appliedtenders();
-                //const totalrows = await counttenders();
-                //notify browser and send all objects
-                // console.log(totalrows);
-                res.render("file.ejs", {
-                    result: rows
-                });
-            });
+});
 
 
-            // city query results
-            app.post("/searchtenders", urlencodedParser, async(req, res) => { // user route
+// Active tenders route
+app.get("/activetenders", async(req, res) => {
+    const rows = await activetenders();
+    //notify browser and send all objects
+    // res.setHeader("content-type", "application/json");
+    res.render("pagination.ejs", {
+        result: rows
+    });
+})
 
-                var city = req.body.search;
+// Expired tenders route
+app.get("/expiredtenders", async(req, res) => {
+    const rows = await expiredtenders();
 
-                function toUpper(string) {
-                    return string.charAt(0).toUpperCase() + string.slice(1);
-                };
-                regexp = /^[A-Z]/;
-                if (regexp.test(city)) {
-                    const rows = await searchtenders(city);
-                    res.render("file.ejs", {
-                        result: rows
-                    });
-                } else {
-                    const rows = await searchtenders(toUpper(city));
-                    res.render("file.ejs", {
-                        result: rows
-                    });
-                }
+    //notify browser and send all objects
+    res.render("file.ejs", {
+        result: rows
+    });
+});
 
-            });
-
-            // Applied tenders route
-            app.get('/applied/:id', async(req, res) => {
-                //UPDATE tender SET status='new' WHERE no = 'TS427526E';
-                await status(req.params.id);
-                res.send("You have applied for " + req.params.id);
-            })
-
-            //apply 'from html template
-            app.post('/apply', urlencodedParser, async(req, res) => {
-                await status(req.body.namet);
-                res.send("      You have successfully applied for Tender : " + req.body.namet);
-            })
+// Expired tenders route
+app.get("/appliedtenders", async(req, res) => {
+    const rows = await appliedtenders();
+    //const totalrows = await counttenders();
+    //notify browser and send all objects
+    // console.log(totalrows);
+    res.render("file.ejs", {
+        result: rows
+    });
+});
 
 
-            //------------- DB CONNECTION & QUERY FUCNTIONS ----------------------- //
+// city query results
+app.post("/searchtenders", urlencodedParser, async(req, res) => { // user route
 
-            //start by connecting to db
-            start();
-            async function start() {
-                await connect();
+    var city = req.body.search;
+
+    function toUpper(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+    regexp = /^[A-Z]/;
+    if (regexp.test(city)) {
+        const rows = await searchtenders(city);
+        res.render("file.ejs", {
+            result: rows
+        });
+    } else {
+        const rows = await searchtenders(toUpper(city));
+        res.render("file.ejs", {
+            result: rows
+        });
+    }
+
+});
+
+// Applied tenders route
+app.get('/applied/:id', async(req, res) => {
+    //UPDATE tender SET status='new' WHERE no = 'TS427526E';
+    await status(req.params.id);
+    res.send("You have applied for " + req.params.id);
+})
+
+//apply 'from html template
+app.post('/apply', urlencodedParser, async(req, res) => {
+    await status(req.body.namet);
+    res.send("      You have successfully applied for Tender : " + req.body.namet);
+})
+
+
+//------------- DB CONNECTION & QUERY FUCNTIONS ----------------------- //
+
+//start by connecting to db
+start();
+async function start() {
+    await connect();
+}
+
+async function connect() {
+    try {
+        await pool.connect();
+        console.log("Succesfully connected to DB.")
+    } catch (e) {
+        console.error(`Failed to connect ${e}`)
+    }
+}
+
+//read all from db
+async function readtenders(limit, offset) {
+    try {
+
+        const results = await pool.query("select no, detail, advertise_date, closing_date, document from tender LIMIT ($1) OFFSET ($2) ", [limit, offset]);
+        //console.log(results.rows);
+        return results.rows;
+    } catch (e) {
+        return e;
+    }
+}
+
+//create an object in DB
+async function createtender(no, detail, ad, cd, doc, st, city) {
+
+    await pool.query('INSERT INTO tender(no, detail, advertise_date, closing_date, document,status,city) VALUES ($1,$2,$3,$4,$5,$6,$7)', [no, detail, ad, cd, doc, st, city],
+        function(err, result) {
+            console.log('New Tender added to DB...');
+            if (err) {
+                console.log("Error Saving : %s ", err);
             }
 
-            async function connect() {
-                try {
-                    await pool.connect();
-                    console.log("Succesfully connected to DB.")
-                } catch (e) {
-                    console.error(`Failed to connect ${e}`)
-                }
-            }
+        });
+}
+// check until today active tenders
 
-            //read all from db
-            async function readtenders(limit, offset) {
-                try {
+async function activetenders() {
 
-                    const results = await pool.query("select no, detail, advertise_date, closing_date, document from tender LIMIT ($1) OFFSET ($2) ", [limit, offset]);
-                    //console.log(results.rows);
-                    return results.rows;
-                } catch (e) {
-                    return e;
-                }
-            }
-
-            //create an object in DB
-            async function createtender(no, detail, ad, cd, doc, st, city) {
-
-                await pool.query('INSERT INTO tender(no, detail, advertise_date, closing_date, document,status,city) VALUES ($1,$2,$3,$4,$5,$6,$7)', [no, detail, ad, cd, doc, st, city],
-                    function(err, result) {
-                        console.log('New Tender added to DB...');
-                        if (err) {
-                            console.log("Error Saving : %s ", err);
-                        }
-
-                    });
-            }
-            // check until today active tenders
-
-            async function activetenders() {
-
-                try {
-                    const results = await pool.query("SELECT DISTINCT no,detail,advertise_date,closing_date,document FROM tender WHERE status='active' ");
-                    return results.rows;
-                } catch (e) {
-                    return e;
-                }
-            }
+    try {
+        const results = await pool.query("SELECT DISTINCT no,detail,advertise_date,closing_date,document FROM tender WHERE status='active' ");
+        return results.rows;
+    } catch (e) {
+        return e;
+    }
+}
 
 
-            // check expired tenders
+// check expired tenders
 
-            async function expiredtenders() {
+async function expiredtenders() {
 
-                try {
-                    const results = await pool.query("SELECT DISTINCT no,detail,advertise_date,closing_date,document FROM tender WHERE status='expired'");
+    try {
+        const results = await pool.query("SELECT DISTINCT no,detail,advertise_date,closing_date,document FROM tender WHERE status='expired'");
 
-                    return results.rows;
-                } catch (e) {
-                    return e;
-                }
-            }
+        return results.rows;
+    } catch (e) {
+        return e;
+    }
+}
 
-            // check city matched tenders
+// check city matched tenders
 
-            async function searchtenders(city) {
+async function searchtenders(city) {
 
-                try {
-                    const results = await pool.query("SELECT DISTINCT no,detail,advertise_date,closing_date,document FROM tender WHERE city=($1) ", [city]);
+    try {
+        const results = await pool.query("SELECT DISTINCT no,detail,advertise_date,closing_date,document FROM tender WHERE city=($1) ", [city]);
 
-                    return results.rows;
-                } catch (e) {
-                    return e;
-                }
-            }
-
-
-            // count all tenders
-
-            async function counttenders() {
-
-                try {
-                    const result = await pool.query("SELECT COUNT(*) FROM tender");
-                    console.log(result.rows.length);
-                    return result;
-                } catch (e) {
-                    return e;
-                }
-            }
-
-            // check applied tenders
-
-            async function appliedtenders() {
-
-                try {
-                    const results = await pool.query("SELECT DISTINCT no,detail,advertise_date,closing_date,document FROM tender WHERE status='apply'");
-
-                    return results.rows;
-                } catch (e) {
-                    return e;
-                }
-            }
-
-            // check expired tenders
-
-            async function status(id) {
-                try {
-                    const results = await pool.query(" UPDATE tender SET status='apply' WHERE no = ($1) ", [id]);
-                    //console.log("done");
-                } catch (e) {
-                    console.log("no");
-                }
-            }
+        return results.rows;
+    } catch (e) {
+        return e;
+    }
+}
 
 
-            //------------- HELPER FUCNTIONS ----------------------- //
+// count all tenders
 
-            // used in createtender fucntion to set status of newly scraped tender
-            function getStatus(ad, cd) {
+async function counttenders() {
 
-                var date = curday();
+    try {
+        const result = await pool.query("SELECT COUNT(*) FROM tender");
+        console.log(result.rows.length);
+        return result;
+    } catch (e) {
+        return e;
+    }
+}
 
-                const ad1 = (ad.replace(/(\r\n|\n|\r)/gm, " ")).split(" ");
-                const cd1 = (cd.replace(/(\r\n|\n|\r)/gm, " ")).split(" ");
+// check applied tenders
 
-                const r1 = ad1[0].split("/");
-                const rm1 = [r1[2], r1[1], r1[0]];
+async function appliedtenders() {
 
-                const r2 = cd1[0].split("/");
-                const rm2 = [r2[2], r2[1], r2[0]];
+    try {
+        const results = await pool.query("SELECT DISTINCT no,detail,advertise_date,closing_date,document FROM tender WHERE status='apply'");
 
-                var aad1 = replaceAll(rm1.toString(), ",", "-");
-                var ccd1 = replaceAll(rm2.toString(), ",", "-");
+        return results.rows;
+    } catch (e) {
+        return e;
+    }
+}
+
+// check expired tenders
+
+async function status(id) {
+    try {
+        const results = await pool.query(" UPDATE tender SET status='apply' WHERE no = ($1) ", [id]);
+        //console.log("done");
+    } catch (e) {
+        console.log("no");
+    }
+}
 
 
-                const closeDate = new Date(ccd1);
+//------------- HELPER FUCNTIONS ----------------------- //
 
-                const curDate = new Date(date);
+// used in createtender fucntion to set status of newly scraped tender
+function getStatus(ad, cd) {
 
-                //active tenders
-                if (curDate > closeDate) {
-                    return "expired";
-                }
-                // expired tenders
-                else {
-                    return "active";
-                }
-            }
+    var date = curday();
 
-            // gives current date
-            var curday = function() {
-                sp = '-';
-                today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1; //As January is 0.
-                var yyyy = today.getFullYear();
+    const ad1 = (ad.replace(/(\r\n|\n|\r)/gm, " ")).split(" ");
+    const cd1 = (cd.replace(/(\r\n|\n|\r)/gm, " ")).split(" ");
 
-                if (dd < 10) dd = '0' + dd;
-                if (mm < 10) mm = '0' + mm;
-                return (yyyy + sp + mm + sp + dd);
+    const r1 = ad1[0].split("/");
+    const rm1 = [r1[2], r1[1], r1[0]];
 
-            };
+    const r2 = cd1[0].split("/");
+    const rm2 = [r2[2], r2[1], r2[0]];
 
-            function replaceAll(string, search, replace) {
-                return string.split(search).join(replace);
-            }
+    var aad1 = replaceAll(rm1.toString(), ",", "-");
+    var ccd1 = replaceAll(rm2.toString(), ",", "-");
 
-            // string separtor
-            function citySelector(main) {
 
-                var str = main.split(',');
+    const closeDate = new Date(ccd1);
 
-                var x = str[1].toString();
-                const str1 = x.trim();
-                return str1;
+    const curDate = new Date(date);
 
-            }
-            // date formatter
-            function get_date(date) {
+    //active tenders
+    if (curDate > closeDate) {
+        return "expired";
+    }
+    // expired tenders
+    else {
+        return "active";
+    }
+}
 
-                const pieces = (date.replace(/(\r\n|\n|\r)/gm, " ")).split(" ");
+// gives current date
+var curday = function() {
+    sp = '-';
+    today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //As January is 0.
+    var yyyy = today.getFullYear();
 
-                const r = pieces[0].split("/");
-                const rm = [r[2], r[1], r[0]];
-                var str2 = replaceAll(rm.toString(), ",", "-");
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    return (yyyy + sp + mm + sp + dd);
 
-                if (pieces.length == 1) {
-                    return str2;
-                } else {
-                    return (str2 + " " + pieces[1].toString());
-                }
-            }
+};
+
+function replaceAll(string, search, replace) {
+    return string.split(search).join(replace);
+}
+
+// string separtor
+function citySelector(main) {
+
+    var str = main.split(',');
+
+    var x = str[1].toString();
+    const str1 = x.trim();
+    return str1;
+
+}
+// date formatter
+function get_date(date) {
+
+    const pieces = (date.replace(/(\r\n|\n|\r)/gm, " ")).split(" ");
+
+    const r = pieces[0].split("/");
+    const rm = [r[2], r[1], r[0]];
+    var str2 = replaceAll(rm.toString(), ",", "-");
+
+    if (pieces.length == 1) {
+        return str2;
+    } else {
+        return (str2 + " " + pieces[1].toString());
+    }
+}

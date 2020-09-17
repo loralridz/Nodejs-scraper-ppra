@@ -81,7 +81,7 @@ async function scrap() {
     };
 
     const browser = await puppeteer.launch();
-    s
+
     const firstUrl =
         "https://www.ppra.org.pk/dad_tenders.asp?PageNo=71";
     //update result in scraped_data
