@@ -1,0 +1,162 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+
+        height: 3000px;
+
+}
+
+.table {
+    padding: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tender-table {
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    padding: 1rem;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px #326690;
+    text-align: center;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 6px;
+    text-align: center;
+}
+
+h1 {
+    color: #326690;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    text-shadow: 0 0 20px lightgray;
+}
+
+.tender-table thead tr {
+    border-bottom: 1px solid darkgray;
+}
+
+.tender-table thead tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.tender-table thead tr:last-of-type {
+    border-bottom: 2px solid #326690;
+}
+
+.tender-table thead tr.active-row {
+    background-color: #326690;
+    font-weight: bold;
+}
+
+.head {
+    background-color: #326690;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom: 1px solid lightgrey;
+}
+
+.btn {
+    margin-left: 55rem;
+    display: inline;
+    padding: 0.3em 1.2em;
+    border-radius: 2em;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    background-color: #326690;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background-color: #629bca;
+}
+/*
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0f3d63;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #01233f;
+}
+.add-on .input-group-btn > .btn {
+    border-left-width:0;
+    
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(2, 0, 7, 0.075);
+  }
+  /* stop the glowing blue shadow 
+  .add-on .form-control:focus {
+     
+   box-shadow:none;
+   -webkit-box-shadow:none; 
+   border-color:#000003; 
+  }
+  .form-control{width:40%}
+  .navbar-nav > li > a {
+    border-right: 1px solid #ddd;
+    padding-bottom: 15px;
+    padding-top: 15px;
+  }
+  .navbar-nav:last-child{ border-right:0}
+  *//* Style the search field */
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  /* Style the submit button */
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: #0b7dda;
+  }
+  
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
