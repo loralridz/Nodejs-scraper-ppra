@@ -83,16 +83,16 @@ app.post('/apply', urlencodedParser, applyController.applytender);
 
 // get register page
 app.get("/users/register", checkAuthenticated, (req, res) => {
-    res.render("register.ejs");
+    res.render("signup.ejs");
 });
 
 // get login page
-app.get("/users/login", (req, res) => { res.render("login.ejs"); });
+app.get("/users/login", (req, res) => { res.render("signin.ejs"); });
 
 // get logout page
 app.get("/users/logout", (req, res) => {
     req.logout();
-    res.render("login.ejs", { message: "You have logged out successfully" });
+    res.render("signin.ejs", { message: "You have logged out successfully" });
 });
 
 app.post("/users/register", urlencodedParser, async(req, res) => {
