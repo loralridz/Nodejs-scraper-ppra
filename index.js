@@ -53,9 +53,24 @@ app.use(passport.session());
 app.use(flash());
 
 // home dashboard route
+    //users only
 app.get("/", checkNotAuthenticated, async(req, res) => {
-    res.render("home.ejs", { user: req.user.name });
+    if(req.user.role=='admin'){
+        res.render("adminpanel.ejs", { user: req.user.name });
+        
+    }
+    else{
+        res.render("home.ejs", { user: req.user.name });
+    }
 });
+
+
+// admin dashboard route
+    //admin only
+app.get("/admin", checkNotAuthenticated,checkRole, async(req, res) => {
+    res.render("adminpanel.ejs", { user: req.user.name });
+});
+
 
 // All tenders route
 app.get("/alltenders", checkNotAuthenticated, tendersController.tenders);
@@ -169,4 +184,13 @@ function checkNotAuthenticated(req, res, next) {
         return next();
     }
     res.redirect("/users/login");
+}
+
+function checkRole(req,res,next){
+    if(req.user.role=='user'){
+        res.send('Not allowed!');
+    }
+    else{
+        return next();
+    }
 }
