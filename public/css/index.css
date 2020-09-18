@@ -1,23 +1,27 @@
-body {
+*{
     font-family: 'Montserrat', sans-serif;
-
-        height: 3000px;
-
 }
 
-.table {
+
+    /*      TABLE CSS        */
+
+.ttable {
+    margin-left: 30rem;
+    width: 700px;
+    min-width: 500px;
     padding: 1rem;
 }
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    table-layout: auto;
 }
 
 .tender-table {
     margin: 25px 0;
     font-size: 0.9em;
-    min-width: 400px;
+    width: 700px;
+    min-width: 700px;
     padding: 1rem;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
@@ -25,8 +29,7 @@ table {
     text-align: center;
 }
 
-th,
-td {
+th,td {
     text-align: left;
     padding: 6px;
     text-align: center;
@@ -83,37 +86,3 @@ h1 {
 .btn:hover {
     background-color: #77cccc;
 }
-form.example input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid grey;
-    float: left;
-    width: 80%;
-    background: #f1f1f1;
-  }
-  .nav-wrapper{
-    background: #008080;
-  }
-  /* Style the submit button */
-  form.example button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: #008080;
-    color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none; /* Prevent double borders */
-    cursor: pointer;
-  }
-  
-  form.example button:hover {
-    background: #008080;
-  }
-  
-  /* Clear floats */
-  form.example::after {
-    content: "";
-    clear: both;
-    display: table;
-  }

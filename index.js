@@ -68,12 +68,15 @@ app.get("/", checkNotAuthenticated, async(req, res) => {
 // admin dashboard route
     //admin only
 app.get("/admin", checkNotAuthenticated,checkRole, async(req, res) => {
-    res.render("adminpanel.ejs", { user: req.user.name });
+    res.render("admin.ejs", {});
 });
 
+app.get("/test", (req, res) => {
+    res.render("admin.ejs", {});
+});
 
 // All tenders route
-app.get("/alltenders", checkNotAuthenticated, tendersController.tenders);
+app.get("/alltenders", tendersController.tenders);
 
 // Get scrapped data and insert in db
 app.get("/scraptenders", checkNotAuthenticated, createController.createtender);
@@ -113,6 +116,7 @@ app.get("/users/logout", (req, res) => {
 app.post("/users/register", urlencodedParser, async(req, res) => {
     //gettig data from ejs file
     let { name, email, password, password2 } = req.body;
+    let role='user';
     let errors = [];
     //validation checks
     if (!name || !email || !password || !password2) {
@@ -147,9 +151,9 @@ app.post("/users/register", urlencodedParser, async(req, res) => {
                     res.render("register", { errors });
                 } else {
                     pool.query(
-                        `INSERT INTO public.user (name, email, password)
-                    VALUES ($1, $2, $3)
-                    RETURNING id, password`, [name, email, hashedPassword],
+                        `INSERT INTO public.user (name, email, password,role)
+                    VALUES ($1, $2, $3,$4)
+                    RETURNING id, password`, [name, email, hashedPassword,role],
                         (err, results) => {
                             if (err) {
                                 throw err;
