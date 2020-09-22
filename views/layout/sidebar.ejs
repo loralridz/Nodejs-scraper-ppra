@@ -120,6 +120,7 @@ h2{
   border : 1px solid #4B4276;
   color: black;
   outline:none;
+ 
 }
 ::-webkit-input-placeholder{
   color: #4B4276;
@@ -132,7 +133,7 @@ h2{
 }
 .fa-search{
   position: absolute;
-  right:20%;
+  right:13%;
   top: 4%;
   font-size: 15px;
 }
@@ -147,6 +148,19 @@ h2{
   .header{
     margin-left: 90px;
   }
+}
+
+.search-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.city{
+  margin-right: 2rem;
 }
 
 
@@ -172,8 +186,12 @@ h2{
       <div class="header">
          <div class="searchbox">
           <form  class="searchTerm" method="POST" action="/searchtenders">
-            <input type="text" placeholder="Search City" name="search">
-            <button type="submit"><i class="fas fa-search"></i></button>
+            <div class="search-container">
+              <input type="text" class="city" placeholder="Location" name="search">
+              <input type="text" class="keyword" placeholder="Keyword" name="keyword">
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            
           </form>
         </div>
       </div>

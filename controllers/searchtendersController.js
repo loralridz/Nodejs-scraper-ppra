@@ -1,27 +1,49 @@
 // import db fucntions
 const search = require('../config/queryfunctions/searchtenders');
+const searchk = require('../config/queryfunctions/searchktenders');
 
 exports.searchtenders = async(req, res) => { // user route
 
-    var city = req.body.search;
+    if(req.body.search){
+        //city search
+        var city = req.body.search;
 
-    function toUpper(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    };
+        function toUpper(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        };
+    
+        regexp = /^[A-Z]/;
+        if (regexp.test(city)) {
+             const rows = await search(city);
+             res.render("file.ejs", {
+                 result: rows
+             });
+         } else {
+             const rows = await search(toUpper(city));
+             res.render("file.ejs", {
+                 result: rows
+             });
+         }
 
-    regexp = /^[A-Z]/;
-    if (regexp.test(city)) {
         const rows = await search(city);
-        console.log(rows);
+        console.log(1);
         res.render("file.ejs", {
-            result: rows
+                result: rows
         });
-    } else {
-        const rows = await search(toUpper(city));
-        console.log(rows);
+    
+    }
+    else{
+        var keyword = req.body.keyword;
+        //keyword search 
+        const rows = await searchk(keyword);
+        console.log(2);
         res.render("file.ejs", {
-            result: rows
+                result: rows
         });
     }
+    
 
+
+   
+   
 };

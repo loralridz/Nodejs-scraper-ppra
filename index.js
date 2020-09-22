@@ -21,6 +21,7 @@ const expiredController = require('./controllers/expiredtendersController');
 const appliedController = require('./controllers/appliedtendersController');
 const searchController = require('./controllers/searchtendersController');
 const applyController = require('./controllers/applytenderController');
+const readtendersController =  require('./controllers/readtendersController');
 
 //setting ejs engine
 app.set('view engine', 'ejs');
@@ -55,13 +56,9 @@ app.use(flash());
 // home dashboard route
     //users only
 app.get("/", checkNotAuthenticated, async(req, res) => {
-    if(req.user.role=='admin'){
-        res.render("adminpanel.ejs", { user: req.user.name });
-        
-    }
-    else{
-        res.render("home.ejs", { user: req.user.name });
-    }
+   
+        res.render("admin.ejs", { user: req.user.name });
+      
 });
 
 
@@ -72,11 +69,15 @@ app.get("/admin", checkNotAuthenticated,checkRole, async(req, res) => {
 });
 
 app.get("/test", (req, res) => {
-    res.render("admin.ejs", {});
+    res.render("user.ejs", {});
 });
 
 // All tenders route
 app.get("/alltenders", tendersController.tenders);
+
+
+//  tenders route
+app.get("/tenders", readtendersController.readtenders);
 
 // Get scrapped data and insert in db
 app.get("/scraptenders", checkNotAuthenticated, createController.createtender);
@@ -100,7 +101,7 @@ app.post('/apply', urlencodedParser, applyController.applytender);
 //------------- Login and sign up Routes ----------------------- //
 
 // get register page
-app.get("/users/register", checkAuthenticated, (req, res) => {
+app.get("/users/register", (req, res) => {
     res.render("signup.ejs");
 });
 

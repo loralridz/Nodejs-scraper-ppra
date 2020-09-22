@@ -32,23 +32,13 @@
                             </th>
 
                             <th>
-                                <% ad = t.advertise_date; %>
-                                <% ad1 = ad.toString().indexOf('T'); %>
-                                <% ad2 = ad.toString().substring(0,ad1); %>
-
-                                <% adDate = ad2; %>
-                                <% console.log(adDate); %>
-                                
                                 <%=t.advertise_date%>
-                                
-                            
-
                             </th>
                             <th>
                                 <%=t.closing_date%>
                             </th>
                             <th>
-                                <%=t.document%>
+                                <a href="<%= t.document %>"> <%=t.document%> </a>
                             </th>
                         </tr>
                         <%});%>
@@ -57,6 +47,23 @@
       
 </div>
 </div>
+</div>
+
+<div align="center">
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="/tenders?page=1">1</a>
+        <a href="/tenders?page=2">2</a>
+        <a href="/tenders?page=3">3</a>
+        <a href="/tenders?page=4">4</a>
+        <a href="/tenders?page=5">5</a>
+        <a href="/tenders?page=6">6</a>
+        <a href="/tenders?page=7">7</a>
+        <a href="/tenders?page=8">8</a>
+        <a href="/tenders?page=9">9</a>
+        <a href="/tenders?page=10">10</a>
+        <a href="#">&raquo;</a>
+    </div>
 </div>
 
 </body>
