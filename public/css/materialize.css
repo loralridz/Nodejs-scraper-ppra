@@ -6292,6 +6292,7 @@ input[type=number]:not(.browser-default).validate + label,
 input[type=search]:not(.browser-default).validate + label,
 textarea.materialize-textarea.validate + label {
   width: 100%;
+  background-color: #651fff;
 }
 
 /* Validation Sass Placeholders */

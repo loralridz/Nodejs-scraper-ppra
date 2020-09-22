@@ -3,14 +3,8 @@
 }
 
 
-    /*      TABLE CSS        */
+    /*      TABLE CSS       
 
-.ttable {
-    margin-left: 30rem;
-    width: 700px;
-    min-width: 500px;
-    padding: 1rem;
-}
 
 table {
     border-collapse: collapse;
@@ -18,17 +12,19 @@ table {
 }
 
 .tender-table {
-    margin: 25px 0;
+    position: relative;
+    top: 3rem;
+    margin-left: 3rem;
     font-size: 0.9em;
     width: 700px;
     min-width: 700px;
     padding: 1rem;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
-    box-shadow: 0 0 20px #008080;
+    box-shadow: 0 0 20px #4b4276;
     text-align: center;
 }
-
+*/
 th,td {
     text-align: left;
     padding: 6px;
@@ -36,7 +32,7 @@ th,td {
 }
 
 h1 {
-    color: #008080;
+    color: #060e0e;
     font-size: 1.5em;
     text-align: center;
     font-weight: bold;
@@ -54,17 +50,17 @@ h1 {
 }
 
 .tender-table thead tr:last-of-type {
-    border-bottom: 2px solid #008080;
+    border-bottom: 2px solid #4b4276;
 }
 
 .tender-table thead tr.active-row {
-    background-color: #008080;
+    background-color: #4b4276;
     font-weight: bold;
 }
 
 .head {
-    background-color: #008080;
-    color: white;
+    background-color: #afafaf;
+    color: rgb(0, 0, 0);
     font-weight: bold;
     font-size: 1.1em;
     border-bottom: 1px solid lightgrey;
@@ -78,11 +74,48 @@ h1 {
     text-decoration: none;
     font-weight: 300;
     color: white;
-    background-color: #008080;
+    background-color: #4b4276;
     text-align: center;
     transition: all 0.2s;
 }
 
 .btn:hover {
-    background-color: #77cccc;
+    background-color: #555168;
 }
+
+.tablediv{
+      /* width: 100%; */
+      position: relative;
+      text-align: center;
+      top: -8rem;
+      height: 100%;
+      margin-left: 250px;
+      margin-right: 0;
+
+  }
+  .table{
+      padding-top: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 10px #13084e;
+      text-align: center;
+      
+    }
+    
+    .table table{
+        
+        
+        border-radius: 5px 5px 0 0;
+       
+        box-shadow: 0 0 20px #13084e;
+        text-align: center;
+      }
+    
+  @media screen and (max-width: 700px) {
+    .tablediv{
+      margin-left: 200px ;
+    }
+    .tender-table{
+        margin-right: 5rem;
+    }
+    
+  }
