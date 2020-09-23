@@ -9,7 +9,7 @@ exports.readtenders = async(req, res) => {
     const rows = await rt(limit,offset);
     //notify browser and send all objects
     // res.setHeader("content-type", "application/json");
-    res.render("file.ejs", {
+    res.render("tenders.ejs", {
         result: rows
     });
 };

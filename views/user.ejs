@@ -1,47 +1,4 @@
+
 <!-- Adding header snippet -->
-<%- include('./layout/userheader.ejs') %>
-    <%- include('./layout/usernavbar.ejs') %> 
-        <div id="tt" class="table">
-            <table id="t" class="tender-table">
-                <thead>
-                    <tr class="head">
-                        <th>No</th>
-                        <th>Details</th>
-                        <th>Advertise</th>
-                        <th>Closing</th>
-                        <th>Document</th>
-                    </tr>
+<%- include('./layout/header.ejs') %> 
 
-                </thead>
-
-                <tbody>
-
-                    <%result.forEach(t=>{%>
-                        <tr>
-                            <th id="td">
-                                <%=t.no%>
-                            </th>
-                            <th id="td">
-                                <%=t.detail%>
-                            </th>
-
-                            <th id="td">
-                                <%=t.advertise_date%>
-                            </th>
-                            <th id="td">
-                                <%=t.closing_date%>
-                            </th>
-                            <td id="td">
-                                <%=t.document%>
-                            </td>
-                        </tr>
-                        <%});%>
-                </tbody>
-            </table>
-        </div>
-        </body>
-
-        </html>
-
-        <!-- Adding footer snippet -->
-        <%- include('./layout/userfooter.ejs') %>

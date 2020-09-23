@@ -6,7 +6,7 @@ exports.expiredtenders = async(req, res) => {
     const rows = await expire();
 
     //notify browser and send all objects
-    res.render("file.ejs", {
+    res.render("tenders.ejs", {
         result: rows
     });
 };

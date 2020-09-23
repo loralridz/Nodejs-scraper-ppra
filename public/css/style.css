@@ -1,10 +1,22 @@
-.table {
-    padding: 1rem;
+.tablediv{
+  /* width: 100%; */
+  position: relative;
+  text-align: center;
+  top: -8rem;
+  height: 100%;
+  margin-left: 250px;
+  margin-right: 0;
+
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
+
+.table{
+  margin-top: 5rem;
+  width: 100%;
+  padding: 1rem;
+  box-shadow: 0 0 10px #13084e;
+  text-align: center;
+  
 }
 
 .tender-table {

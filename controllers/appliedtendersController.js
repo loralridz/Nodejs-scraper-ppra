@@ -6,7 +6,7 @@ exports.appliedtenders = async(req, res) => {
     //const totalrows = await counttenders();
     //notify browser and send all objects
     // console.log(totalrows);
-    res.render("file.ejs", {
+    res.render("tenders.ejs", {
         result: rows
     });
 };

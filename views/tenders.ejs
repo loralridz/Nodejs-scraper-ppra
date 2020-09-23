@@ -1,0 +1,45 @@
+<!-- Adding header snippet -->
+<%- include('./layout/header.ejs') %> 
+
+    <section>
+        <div id="tt" class="table">
+
+            <table id="t" class="tender-table">
+                <thead>
+                    <tr class="head">
+                        <th class="col-sm-1">No</th>
+                        <th class="col-sm-5">Details</th>
+                        <th class="col-sm-3">Advertise</th>
+                        <th class="col-sm-3">Closing</th>
+                        <th class="col-sm-1">Document</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <%result.forEach(t=>{%>
+                        <tr>
+                            <th id="td">
+                                <%=t.no%>
+                            </th>
+                            <th id="td">
+                                <%=t.detail%>
+                            </th>
+
+                            <th id="td">
+                                <%=t.advertise_date%>
+                            </th>
+                            <th id="td">
+                                <%=t.closing_date%>
+                            </th>
+                            <th>
+                                <a href="<%= t.document %>">Link</a>
+                            </th>
+                        </tr>
+                        <%});%>
+                </tbody>
+            </table>
+        </div>
+    </section>
+        

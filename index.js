@@ -55,9 +55,14 @@ app.use(flash());
 
 // home dashboard route
     //users only
-app.get("/", checkNotAuthenticated, async(req, res) => {
-   
+app.get("/", checkNotAuthenticated,async(req, res) => {
+
+    if(req.user.role=='user'){
+        res.render("user.ejs", { user: req.user.name });
+    }
+    else{
         res.render("admin.ejs", { user: req.user.name });
+    }
       
 });
 
@@ -68,7 +73,7 @@ app.get("/admin", checkNotAuthenticated,checkRole, async(req, res) => {
     res.render("admin.ejs", {});
 });
 
-app.get("/test", (req, res) => {
+app.get("/user", (req, res) => {
     res.render("user.ejs", {});
 });
 

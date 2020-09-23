@@ -3,7 +3,7 @@ const active = require('../config/queryfunctions/activetenders');
 
 exports.activetenders = async(req, res) => {
     const rows = await active();
-    res.render("active.ejs", {
+    res.render("activetenders.ejs", {
         result: rows
     });
 };

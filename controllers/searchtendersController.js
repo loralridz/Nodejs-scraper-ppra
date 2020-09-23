@@ -15,19 +15,19 @@ exports.searchtenders = async(req, res) => { // user route
         regexp = /^[A-Z]/;
         if (regexp.test(city)) {
              const rows = await search(city);
-             res.render("file.ejs", {
+             res.render("tenders.ejs", {
                  result: rows
              });
          } else {
              const rows = await search(toUpper(city));
-             res.render("file.ejs", {
+             res.render("tenders.ejs", {
                  result: rows
              });
          }
 
         const rows = await search(city);
         console.log(1);
-        res.render("file.ejs", {
+        res.render("tenders.ejs", {
                 result: rows
         });
     
