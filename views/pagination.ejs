@@ -1,0 +1,57 @@
+<!-- Adding header snippet -->
+<%- include('./layout/header.ejs') %>
+    <%- include('./layout/navbar.ejs') %>
+        <br>
+        <br>
+
+        <div id="tt" class="table">
+            <table id="t" class="tender-table" text-align="center">
+                <thead>
+                    <tr class="head">
+                        <th>No</th>
+                        <th>Details</th>
+                        <th>Advertise</th>
+                        <th>Closing</th>
+                        <th>Document</th>
+                        <th>Apply</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <%result.forEach(t=>{%>
+                        <tr>
+                            <th>
+                                <%=t.no%>
+                            </th>
+                            <th>
+                                <%=t.detail%>
+                            </th>
+                                <th>
+                                    <%=t.advertise_date%>
+                                </th>
+                                <th>
+                                    <%=t.closing_date%>
+                                </th>
+                                <th>
+                                    <%=t.document%>
+                                </th>
+                                <th>
+                                    <form action="/apply" method="POST">
+                                        <button type="submit" name="namet" value="<%= t.no %>">Apply</button>
+
+                                    </form>
+                                </th>
+                        </tr>
+                        <%});%>
+                </tbody>
+            </table>
+        </div>
+
+        </body>
+
+        </html>
+
+        <!-- Adding footer snippet -->
+        <%- include('./layout/footer.ejs') %>

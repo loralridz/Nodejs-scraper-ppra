@@ -2,10 +2,10 @@
 const puppeteer = require("puppeteer");
 
 
- var c = 0;
+var c = 0;
 
 //Async function for getting data
-async function scrap(){
+async function scrap() {
 
     // Result async function for logic to run in the browser
     const result = async url => {
@@ -22,42 +22,52 @@ async function scrap(){
             const tb = document.querySelector(
                 "body > div:nth-child(14) > table > tbody > tr:nth-child(4) > td > form > div > table > tbody"
             );
+
             //array declared
             let data = [];
             if (tb)
 
                 for (let ii = 2; ii < tb.childElementCount; ii++) {
-                    // Gets whole row
-                    const tr = tb.children[ii];
-                    //Object declared
-                    let rowData = {};
-                    for (let jj = 0; jj < tr.childElementCount; jj++) {
-                        //Get one cell
-                        const td = tr.children[jj];
-                        if (jj == 0) {
-                            rowData.No = td.innerText;
-                        } else if (jj == 1) {
-                            rowData.Details = td.innerText;
-                        } else if (jj == 2) {
-                            const cell = td;
-                            // Cell gets P then gets a then href in a
-                            rowData.Document = cell.firstElementChild.firstElementChild.href;
-                        } else if (jj == 3) {
-                            rowData.Advertise_date = td.innerText;
-                        } else if (jj == 4) {
-                            rowData.Close_date = td.innerText;
-                        }
+
+                // Gets whole row
+                const tr = tb.children[ii];
+
+
+                //Object declared
+                let rowData = {};
+                for (let jj = 0; jj < tr.childElementCount; jj++) {
+
+                    //Get one cell
+                    const td = tr.children[jj];
+                    if (jj == 0) {
+                        rowData.No = td.innerText;
+                    } else if (jj == 1) {
+                        rowData.Detail = td.innerText;
+                        const cell = td;
+                        const city = cell.firstElementChild.firstElementChild.innerText;
+                        rowData.city = city;
+                    } else if (jj == 2) {
+                        const cell = td;
+                        // Cell gets P then gets a then href in a
+                        rowData.Document = cell.firstElementChild.firstElementChild.href;
+                    } else if (jj == 3) {
+                        rowData.Advertise_date = td.innerText;
+                    } else if (jj == 4) {
+                        rowData.Close_date = td.innerText;
                     }
-                    // Pushing object in array
-                    data.push(rowData);
-                 }
+
+
+                }
+                // Pushing object in array
+                data.push(rowData);
+            }
 
             return data;
         });
         await page.close();
 
         // Recursively scrape the next page
-        if( (result.length < 1) || (c>10) ){
+        if ((result.length < 1) || (c > 10)) {
             // Terminate if no result page exist
             return dataresult;
         } else {
@@ -71,9 +81,10 @@ async function scrap(){
     };
 
     const browser = await puppeteer.launch();
+
     const firstUrl =
-        "https://www.ppra.org.pk/dad_tenders.asp?PageNo=1";
-        //update result in scraped_data
+        "https://www.ppra.org.pk/dad_tenders.asp?PageNo=71";
+    //update result in scraped_data
     const scraped_data = await result(firstUrl);
     await browser.close();
 
@@ -82,4 +93,4 @@ async function scrap(){
 }
 
 // export scraper
-module.exports = {scrap}
+module.exports = { scrap }
