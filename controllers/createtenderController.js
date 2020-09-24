@@ -1,12 +1,13 @@
 // import db fucntions
 const create = require('../config/queryfunctions/createtender');
 const rt = require('../config/queryfunctions/readtenders');
+const sc = require('../scrap');
 
 
 exports.createtender = async(req, res) => {
 
     // await for scrapper to return scraped array 
-    const ppra_tenders = await scrap.scrap();
+    const result = await sc.scrap();
 
 
     const db_tenders = await rt();

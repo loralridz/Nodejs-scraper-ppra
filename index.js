@@ -58,10 +58,12 @@ app.use(flash());
 app.get("/", checkNotAuthenticated,async(req, res) => {
 
     if(req.user.role=='user'){
-        res.render("user.ejs", { user: req.user.name });
+        //res.render("user.ejs", { user: req.user.name });
+        res.redirect("/alltenders");
     }
     else{
-        res.render("admin.ejs", { user: req.user.name });
+        //res.render("admin.ejs", { user: req.user.name });
+        res.redirect("/alltenders");
     }
       
 });
@@ -82,7 +84,7 @@ app.get("/alltenders", tendersController.tenders);
 
 
 //  tenders route
-app.get("/tenders", readtendersController.readtenders);
+app.get("/tenders",checkNotAuthenticated, readtendersController.readtenders);
 
 // Get scrapped data and insert in db
 app.get("/scraptenders", checkNotAuthenticated, createController.createtender);
