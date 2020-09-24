@@ -1,7 +1,5 @@
 /* import font */
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-/* import icons */
-@import 'https://unpkg.com/ionicons@5.1.2/dist/ionicons.js';
 
 *{
   margin: 0;
@@ -12,6 +10,10 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+  
+}
 body{
    background-color: #f3f5f9;
 }
@@ -43,7 +45,7 @@ body{
     background-image: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%); 
 
     background-color: #420747;*/
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);  
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%); 
     float:left;
     padding: 30px 0px;
     position: fixed;
@@ -55,7 +57,7 @@ body{
     left: -250px;
     width: 250px;
     height: 100%;
-    background-color:#1b3c4b;
+    background-image: linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%);
     transition: all .5s;
 }
 
@@ -63,8 +65,8 @@ body{
     line-height: 70px;
     padding: 20px;
     text-align: center;
-    background: #9fcee0;
-    font-size: 20px;
+   
+    font-size: 22px;
     font-weight: 800;
     user-select: none;
 }
@@ -75,12 +77,12 @@ body{
     padding-left: 40px;
     line-height: 65px;
     border: 1px solid rgba(255, 255, 255, .1);
-    border-bottom: 1px solid black;
+    /*border-bottom: 1px solid rgb(136, 136, 136);*/
     transition: .4s ease-in-out;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 16px;
     display: inline-block;
-    color: #fff;
+    color: rgb(255, 255, 255);
 }
 .sidebar ul li:hover a {
     padding-left: 50px;
@@ -98,7 +100,6 @@ label {
 label #btn, label #cancel {
     position: absolute;
     cursor: pointer;
-    background-color: #9fcee0;
     border-radius: 3px;
 }
 label #btn {
@@ -110,11 +111,12 @@ label #btn {
     transition: all .5s;
 }
 label #cancel {
+  position: fixed;
     z-index: 1111;
     left: -195px;
     top: 17px;
     font-size: 30px;
-    color: #0a5275;
+    color: #ffffff;
     padding: 4px 9px;
     transition: all .5s;
 }
@@ -196,7 +198,9 @@ label #cancel {
   }
   
   /* searchbar */
-  
+  div.header{
+    BACKGROUND-COLOR:#4f77a1;
+  }
   .header{
     background: url("bg.png") no-repeat center ;
     width: 100%;
@@ -205,7 +209,7 @@ label #cancel {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #6f6497;
+
   }
   .searchbox{
     width: 60%;
@@ -237,7 +241,7 @@ label #cancel {
   .fa-search{
     position: absolute;
     right:13%;
-    top: 7%;
+    top: 6%;
     font-size: 15px;
   }
   
@@ -270,10 +274,10 @@ label #cancel {
 /* apply button styling */
 .apply {
 	box-shadow:inset 0px 1px 0px 0px #efdcfb;
-	background:linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
-	background-color:#dfbdfa;
+	background:linear-gradient(to bottom, #84a6ca 5%, #3f5c8f 100%);
+	background-color:#84a6ca;
 	border-radius:6px;
-	border:1px solid #c584f3;
+	border:1px solid #3f5c8f;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -282,11 +286,11 @@ label #cancel {
 	font-weight:bold;
 	padding:4px 22px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #9752cc;
+	text-shadow:0px 1px 0px #3f5c8f;
 }
 .apply:hover {
-	background:linear-gradient(to bottom, #bc80ea 5%, #dfbdfa 100%);
-	background-color:#bc80ea;
+	background:linear-gradient(to bottom, #3f5c8f 5%, #84a6ca 100%);
+	background-color:#3f5c8f;
 }
 .apply:active {
 	position:relative;
@@ -426,8 +430,8 @@ th,td {
       
       /* table head row*/
       .head {
-          background-color: #7e4a79;
-          color: white;
+          background-color: #cecece;
+          color: black;
           font-weight: bold;
           font-size: 1.3em;
           border-bottom: 1px solid lightgrey;
@@ -574,11 +578,18 @@ th,td {
           border-radius: 4px;
         }
       
-        html {
-          scroll-behavior: smooth;
-          
+        .pag{
+          align-content: center;
+          display: inline-block;
         }
-
+        
+        .pag a {
+          color: black;
+          float: left;
+          padding: 8px 16px;
+          text-decoration: none;
+        }
+        
   @media screen and (max-width: 700px) {
     .tablediv{
       margin-left: 200px ;

@@ -15,6 +15,7 @@
 
       <!-- Side bar -->
       <!-- <div class="wrapper">
+
           <div class="sidebar">
               <h2 style="font-size: 22px;">Dashboard</h2>
               <ul>
@@ -27,20 +28,25 @@
               </ul>
           </div>
       </div> -->
+
+      
+       <!-- toggle link -->
       <input type="checkbox" name="value" id="check">
     <label for="check">
         <i class="fa fa-bars" id="btn"></i>
         <i class="fa fa-times" id="cancel"></i>
     </label>
+
+    <!-- Side bar -->
       <div class="sidebar">
-        <header>
-            My Header
-        </header>
+        <header style="font-size: 22px; color: white;">User Dashboard</header>
         <ul>
-            <li><a href="#"><i class="fa fa-qrcode"></i>Code</a></li>
-            <li><a href="#"><i class="fa fa-link"></i>About</a></li>
-            <li><a href="#"><i class="fa fa-link"></i>Stream</a></li>
-            <li><a href="#"><i class="fa fa-qrcode"></i>Calaner</a></li>
+            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="/alltenders"><i class="fas fa-envelope"></i>All tenders </a></li>
+            <li><a href="/activetenders"><i class="fas fa-envelope-open"></i>Active tenders</a></li>
+            <li><a href="/expiredtenders"><i class="fas fa-archive"></i>Expired tenders</a></li>
+            <li><a href="/appliedtenders"><i class="fas fa-thumbtack"></i>Applied tenders</a></li>
+            <li><a href="/users/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
         </ul>
     </div>
       
@@ -51,7 +57,7 @@
           <form  class="searchTerm" method="POST" action="/searchtenders">
             <div class="search-container">
               <input type="text" class="city" placeholder="Location" name="search">
-              <a href="#" type="submit"><i class="fas fa-search" style="right: 48%;"></i></a>
+              <a href="#" type="submit"><i class="fas fa-search" style="right: 49%;"></i></a>
               <input type="text" class="keyword" placeholder="Keyword" name="keyword">
               <a href="#" type="submit"><i class="fas fa-search"  style="right: 18%;"></i></input></a>
             </div>
@@ -59,5 +65,5 @@
         </div>
       </div>
 
-      <!-- toggle link -->
+     
       
