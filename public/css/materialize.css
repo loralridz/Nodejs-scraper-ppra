@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 /*!
  * Materialize v1.0.0 (http://materializecss.com)
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+=======
+/*!
+ * Materialize v1.0.0 (http://materializecss.com)
+ * Copyright 2014-2017 Materialize
+ * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
+ */
+>>>>>>> develop
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -708,7 +716,11 @@
 }
 
 .blue.darken-3 {
+<<<<<<< HEAD
+  background-color: #008080 !important;
+=======
   background-color: #1565C0 !important;
+>>>>>>> develop
 }
 
 .blue-text.text-darken-3 {
@@ -5622,6 +5634,7 @@ body.keyboard-focused .dropdown-content li:focus {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 /*!
  * Waves v0.6.0
  * http://fian.my.id/Waves
@@ -5629,6 +5642,15 @@ body.keyboard-focused .dropdown-content li:focus {
  * Copyright 2014 Alfiana E. Sibuea and other contributors
  * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE
+=======
+/*!
+ * Waves v0.6.0
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
+>>>>>>> develop
  */
 .waves-effect {
   position: relative;
@@ -6292,6 +6314,10 @@ input[type=number]:not(.browser-default).validate + label,
 input[type=search]:not(.browser-default).validate + label,
 textarea.materialize-textarea.validate + label {
   width: 100%;
+<<<<<<< HEAD
+  background-color: #651fff;
+=======
+>>>>>>> develop
 }
 
 /* Validation Sass Placeholders */
@@ -7038,7 +7064,11 @@ textarea.materialize-textarea {
   border-color: #949494;
 }
 
+<<<<<<< HEAD
 /* Switch
+=======
+/* Switch
+>>>>>>> develop
    ========================================================================== */
 .switch,
 .switch * {
@@ -7286,7 +7316,11 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
   padding-left: 1rem;
 }
 
+<<<<<<< HEAD
 /* File Input
+=======
+/* File Input
+>>>>>>> develop
    ========================================================================== */
 .file-field {
   position: relative;
@@ -7752,6 +7786,7 @@ input[type=range]::-ms-thumb {
   display: none;
 }
 
+<<<<<<< HEAD
 /*
     @license
     Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -7760,10 +7795,21 @@ input[type=range]::-ms-thumb {
     The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
     Code distributed by Google as part of the polymer project is also
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+=======
+/*
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+>>>>>>> develop
  */
 /**************************/
 /* STYLES FOR THE SPINNER */
 /**************************/
+<<<<<<< HEAD
 /*
  * Constants:
  *      STROKEWIDTH = 3px
@@ -7776,6 +7822,20 @@ input[type=range]::-ms-thumb {
  *                                360/7 * 3 = 154.286)
  *      CONTAINERWIDTH = 28px
  *      SHRINK_TIME = 400ms
+=======
+/*
+ * Constants:
+ *      STROKEWIDTH = 3px
+ *      ARCSIZE     = 270 degrees (amount of circle the arc takes up)
+ *      ARCTIME     = 1333ms (time it takes to expand and contract arc)
+ *      ARCSTARTROT = 216 degrees (how much the start location of the arc
+ *                                should rotate each time, 216 gives us a
+ *                                5 pointed star shape (it's 360/5 * 3).
+ *                                For a 7 pointed star, we might do
+ *                                360/7 * 3 = 154.286)
+ *      CONTAINERWIDTH = 28px
+ *      SHRINK_TIME = 400ms
+>>>>>>> develop
  */
 .preloader-wrapper {
   display: inline-block;
@@ -7841,6 +7901,7 @@ input[type=range]::-ms-thumb {
   border-color: #0f9d58;
 }
 
+<<<<<<< HEAD
 /**
  * IMPORTANT NOTE ABOUT CSS ANIMATION PROPERTIES (keanulee):
  *
@@ -7853,6 +7914,20 @@ input[type=range]::-ms-thumb {
  * animation-duration, etc.) because under the polyfill, Safari does not recognize those
  * specific properties properly, treats them as -webkit-animation, and overrides the
  * other animation rules. See https://github.com/Polymer/platform/issues/53.
+=======
+/**
+ * IMPORTANT NOTE ABOUT CSS ANIMATION PROPERTIES (keanulee):
+ *
+ * iOS Safari (tested on iOS 8.1) does not handle animation-delay very well - it doesn't
+ * guarantee that the animation will start _exactly_ after that value. So we avoid using
+ * animation-delay and instead set custom keyframes for each color (as redundant as it
+ * seems).
+ *
+ * We write out each animation in full (instead of separating animation-name,
+ * animation-duration, etc.) because under the polyfill, Safari does not recognize those
+ * specific properties properly, treats them as -webkit-animation, and overrides the
+ * other animation rules. See https://github.com/Polymer/platform/issues/53.
+>>>>>>> develop
  */
 .active .spinner-layer.spinner-blue {
   /* durations: 4 * ARCTIME */
@@ -8117,9 +8192,15 @@ input[type=range]::-ms-thumb {
   }
 }
 
+<<<<<<< HEAD
 /**
  * Patch the gap that appear between the two adjacent div.circle-clipper while the
  * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
+=======
+/**
+ * Patch the gap that appear between the two adjacent div.circle-clipper while the
+ * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
+>>>>>>> develop
  */
 .gap-patch {
   position: absolute;
@@ -8486,10 +8567,26 @@ input[type=range]::-ms-thumb {
   visibility: visible;
   -webkit-animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
           animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+<<<<<<< HEAD
+  -webkit-transition: opacity .3s,
+ visibility 0s 1s,
+ -webkit-transform .3s;
+  transition: opacity .3s,
+ visibility 0s 1s,
+ -webkit-transform .3s;
+  transition: opacity .3s,
+ transform .3s,
+ visibility 0s 1s;
+  transition: opacity .3s,
+ transform .3s,
+ visibility 0s 1s,
+ -webkit-transform .3s;
+=======
   -webkit-transition: opacity .3s, visibility 0s 1s, -webkit-transform .3s;
   transition: opacity .3s, visibility 0s 1s, -webkit-transform .3s;
   transition: opacity .3s, transform .3s, visibility 0s 1s;
   transition: opacity .3s, transform .3s, visibility 0s 1s, -webkit-transform .3s;
+>>>>>>> develop
 }
 
 .tap-target {
@@ -8542,10 +8639,26 @@ input[type=range]::-ms-thumb {
 
 .tap-target-wave::after {
   visibility: hidden;
+<<<<<<< HEAD
+  -webkit-transition: opacity .3s,
+ visibility 0s,
+ -webkit-transform .3s;
+  transition: opacity .3s,
+ visibility 0s,
+ -webkit-transform .3s;
+  transition: opacity .3s,
+ transform .3s,
+ visibility 0s;
+  transition: opacity .3s,
+ transform .3s,
+ visibility 0s,
+ -webkit-transform .3s;
+=======
   -webkit-transition: opacity .3s, visibility 0s, -webkit-transform .3s;
   transition: opacity .3s, visibility 0s, -webkit-transform .3s;
   transition: opacity .3s, transform .3s, visibility 0s;
   transition: opacity .3s, transform .3s, visibility 0s, -webkit-transform .3s;
+>>>>>>> develop
   z-index: -1;
 }
 

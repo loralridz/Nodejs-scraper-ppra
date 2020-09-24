@@ -1,0 +1,73 @@
+<!-- Adding header snippet -->
+<%- include('./layout/authheader.ejs') %>
+
+
+    <ul>
+        <% if (typeof errors != 'undefined') { %>
+            <% errors.forEach(error => { %>
+                <li>
+                    <%= error.message %>
+                </li>
+                <% }) %>
+                    <% } %>
+    </ul>
+
+    <ul>
+        <% if(messages.success_msg) { %>
+            <li>
+                <%= messages.success_msg %>
+            </li>
+            <% } %>
+    </ul>
+
+    <ul>
+        <% if (messages.error) { %>
+            <li>
+                <%= messages.error %>
+            </li>
+            <% } %>
+    </ul>
+    <div></div>
+    <br>
+    <br>
+    <br>
+    <div id="flayer">
+        <div id="slayer">
+            <div class="container" id="content">
+                <div class="row">
+                    <div class="col l3 m3 s12"></div>
+                    <div class="col l6 m6 s12">
+                        <form action="/users/login" method="POST">
+                            <div class="card-panel z-depth-5">
+                                <h5 class="center">Sign In</h5>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">email</i>
+                                    <input class="validate" type="email" id="email" name="email" placeholder="Email" required />
+                                    <label>Enter email</label>
+                                </div>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input type="password" id="password" name="password" placeholder="Password" required />
+                                    <label>Enter password</label>
+                                </div>
+
+                                <p class="right">Don't have an account? <a href="/users/register" class="modal-trigger">Sign Up</a></p>
+                                <input type="submit" name="submit" value="Login" style="background:linear-gradient(to bottom, #84a6ca 5%, #3f5c8f 100%); color:rgb(255, 255, 255)" class="btn left col s12">
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+
+    </html>
