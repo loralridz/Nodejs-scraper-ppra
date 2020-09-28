@@ -36,10 +36,9 @@ app.listen(8000, () => {
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+//------------- Middlewares ----------------------- //
 
-//------------- FILE ROUTES ----------------------- //
-
-//static files route
+//static files middleware
 app.use(express.static(__dirname + '/public'));
 
 //session middleware
@@ -48,14 +47,17 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
 //flash middleware
 app.use(flash());
 
+//------------- File routes ----------------------- //
+
 // home dashboard route
-    //users only
 app.get("/", checkNotAuthenticated,async(req, res) => {
 
     if(req.user.role=='user'){
@@ -64,7 +66,7 @@ app.get("/", checkNotAuthenticated,async(req, res) => {
     }
     else{
         //res.render("admin.ejs", { user: req.user.name });
-        res.redirect("/alltenders");
+        res.redirect("/admin");
     }
       
 });
@@ -72,9 +74,7 @@ app.get("/", checkNotAuthenticated,async(req, res) => {
 
 // admin dashboard route
     //admin only
-app.get("/admin", checkNotAuthenticated,checkRole, async(req, res) => {
-    res.render("admin.ejs", {});
-});
+app.get("/admin", checkNotAuthenticated,checkRole,tendersController.tenders );
 
 app.get("/user", (req, res) => {
     res.render("user.ejs", {});

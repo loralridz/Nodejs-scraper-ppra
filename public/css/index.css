@@ -99,7 +99,7 @@ label {
     margin: 0px !important;
     display: block !important;
 }
-label #btn, label #cancel {
+label #btn, label #cancel{
     position: absolute;
     cursor: pointer;
     border-radius: 3px;
@@ -111,6 +111,11 @@ label #btn {
     color: #fff;
     padding: 6px 12px;
     transition: all .5s;
+}
+#social {
+  font-size: 25px;
+  padding: 0.5rem;
+  color: #fff;
 }
 label #cancel {
   position: fixed;
